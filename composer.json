@@ -1,6 +1,6 @@
 {
     "name": "stephanwoerner/erv-exi-soap",
-    "license": "proprietary",
+    "license": "MIT",
     "type": "project",
     "authors": [
         {
