@@ -8,9 +8,47 @@ contact@reiseversicherung.de
 #Install
 composer require stephanwoerner/erv-exi-soap
 
-#Example
-Look at test.php
+add to your AppKernel.php 
+```` 
+public function registerBundles()
+{
+    $bundles = [
+        .
+        .
+        .
+        new StephanWoerner\ErvExiSoap\ErvExiSoapBundle(),
+    
+    ];
+}
 ````
+add to your services.yml
+````
+services:
+    summit.exi:
+        class:        StephanWoerner\ErvExiSoap\Exi
+        arguments:    ["@doctrine.orm.entity_manager", "%exi_agency_identifier%", "%exi_product_line%", "%exi_test_email%"]
+
+````
+and add exi_agency_identifier, exi_product_line and exi_test_email to your parameters.yml
+
+#Database
+Execute folowing query on your MySql database:
+
+````
+CREATE TABLE exi_protocol (id INT AUTO_INCREMENT NOT NULL, date_created DATETIME NOT NULL, booking_reference INT, request_type VARCHAR(100) NOT NULL, request TEXT NOT NULL, response TEXT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB;
+````
+
+#Example usage in Symfony Controller
+````
+$exi = $this->container->get('summit.exi');
+
+$exi->init(
+    'https://egate2.erv.de/exiws201802/ExiConnector?wsdl',
+    'EUR',
+    'DE',
+    'DEU',
+    true
+);
 $responseOffer = $exi->callRequestOffer(
     [
         'firstname'   => 'Hans',
@@ -38,3 +76,8 @@ $responseOffer = $exi->callRequestOffer(
         ]
     ]
 );
+````
+
+#Example without using Symfony framework
+Look at test.php
+
