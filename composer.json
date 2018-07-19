@@ -1,0 +1,47 @@
+{
+    "name": "erv-exi-soap",
+    "license": "proprietary",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Stephan Wörner",
+            "email": "swoerner@arcor.de",
+            "role": "Head of Development Dav Summit Club"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "StephanWoerner\\ErvExiSoap\\": "src/"
+        },
+        "classmap": [
+
+        ]
+    },
+    "require": {
+        "php": ">=7.0",
+        "doctrine/orm": "2.5.6",
+        "doctrine/doctrine-bundle": "1.6.8"
+    },
+    "require-dev": {
+    },
+    "scripts": {
+        "symfony-scripts": [
+        ],
+        "post-install-cmd": [
+        ],
+        "post-update-cmd": [
+        ],
+        "pre-install-cmd": [
+        ],
+        "pre-update-cmd": [
+        ]
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "platform": {
+            "php": "7.0.27"
+        }
+    },
+    "extra": {
+    }
+}
