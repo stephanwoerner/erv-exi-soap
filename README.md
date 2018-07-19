@@ -6,7 +6,7 @@ Contact support on ERV insurance company and make a contract to get your private
 contact@reiseversicherung.de
 
 #Install
-composer require stephanwoerner/erv-exi-soap:*
+composer require stephanwoerner/erv-exi-soap
 
 #Example
 Look at test.php
