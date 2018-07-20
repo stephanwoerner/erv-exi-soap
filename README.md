@@ -24,7 +24,7 @@ public function registerBundles()
 add to your services.yml
 ````
 services:
-    summit.exi:
+    sw.exi:
         class:        StephanWoerner\ErvExiSoap\Exi
         arguments:    ["@doctrine.orm.entity_manager", "%exi_agency_identifier%", "%exi_product_line%", "%exi_test_email%"]
 
@@ -40,7 +40,7 @@ CREATE TABLE exi_protocol (id INT AUTO_INCREMENT NOT NULL, date_created DATETIME
 
 #Example usage in Symfony Controller
 ````
-$exi = $this->container->get('summit.exi');
+$exi = $this->container->get('sw.exi');
 
 $exi->init(
     'https://egate2.erv.de/exiws201802/ExiConnector?wsdl',
