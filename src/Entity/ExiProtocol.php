@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Aktion
  *
- * @ORM\Table(name="exi_protocol")
+ * @ORM\Table(name="exi_protocol", indexes={@ORM\Index(name="idx_exi_protocol_booking_reference", columns={"booking_reference"})})
  * @ORM\Entity
  */
 class ExiProtocol
