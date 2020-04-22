@@ -90,16 +90,23 @@ class Exi
 
     /**
      * @param string $requestType
-     * @param integer $bookingReference
+     * @param string|null $bookingReference
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    protected function exiProtocol($requestType, $bookingReference = null)
+    protected function exiProtocol(string $requestType, string $bookingReference = null)
     {
         $exiProtocol = new ExiProtocol();
-        $exiProtocol->setDateCreated(new \DateTime())
-                    ->setBookingReference($bookingReference)
-                    ->setRequestType($requestType)
-                    ->setRequest(serialize($this->exiService->getRequest()))
-                    ->setResponse(serialize($this->exiService->getResponse()));
+        $exiProtocol
+            ->setDateCreated(new \DateTime())
+            ->setBookingReference($bookingReference)
+            ->setRequestType($requestType)
+            ->setRequest(serialize($this->exiService->getRequest()))
+            ->setResponse(serialize($this->exiService->getResponse()))
+            ->setIsError(null === $this->exiService->getResponse() ||
+                null !== $this->exiService->getResponse()->getUserError() ||
+                null !== $this->exiService->getResponse()->getSystemError()
+            )
+            ->setIsExported(0);
         $this->em->persist($exiProtocol);
         $this->em->flush();
     }
@@ -134,9 +141,10 @@ class Exi
      *           ],
      *          ]
      *
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @return object
      */
-    public function callRequestOffer($customerData, $travelData, $travellers)
+    public function callRequestOffer(array $customerData, array $travelData, array $travellers)
     {
         $this->exiService->callRequestOffer($customerData, $travelData, $travellers);
         $this->exiProtocol('Offer');
@@ -176,10 +184,16 @@ class Exi
      * @param $offerID
      * @param $bookingReference
      *
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @return object
      */
     public function callRequestPreContractualInformation(
-        $customerData, $travelData, $travellers, $requestID, $offerID, $bookingReference
+        array $customerData,
+        array $travelData,
+        array $travellers,
+        $requestID,
+        $offerID,
+        $bookingReference
     ) {
         $this->exiService->callRequestPreContractualInformation(
             $customerData,
@@ -230,10 +244,17 @@ class Exi
      * example: RA-ERV-106756
      * @param $bookingReference
      *
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @return object
      */
     public function callRequestBooking(
-        $customerData, $travelData, $travellers, $requestID, $offer, $preContractualInformationID, $bookingReference
+        array $customerData,
+        array $travelData,
+        array $travellers,
+        $requestID,
+        $offer,
+        $preContractualInformationID,
+        $bookingReference
     ) {
         $this->exiService->callRequestBooking(
             $customerData,
@@ -256,9 +277,10 @@ class Exi
      * Remember that cancellation in test environment don't works. You must call your support team on ERV to enable your booking for cancellation
      * @param $bookingReference
      *
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @return object
      */
-    public function callRequestCancellation($requestID, $bookingResponse,$bookingReference)
+    public function callRequestCancellation($requestID, $bookingResponse, $bookingReference)
     {
         $this->exiService->callRequestCancellation($requestID, $bookingResponse);
         $this->exiProtocol('Cancellation', $bookingReference);
