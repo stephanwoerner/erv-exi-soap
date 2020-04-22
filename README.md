@@ -78,6 +78,6 @@ $responseOffer = $exi->callRequestOffer(
 );
 ````
 
-#Example without using Symfony framework
+#Example without using Symfony framework.
 Look at test.php
 

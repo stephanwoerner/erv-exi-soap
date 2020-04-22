@@ -54,6 +54,20 @@ class ExiProtocol
     private $response;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_exported", type="boolean", nullable=true)
+     */
+    private $isExported;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_error", type="boolean", nullable=true)
+     */
+    private $isError;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -65,7 +79,7 @@ class ExiProtocol
     /**
      * @return \DateTime
      */
-    public function getDateCreated()
+    public function getDateCreated(): ?\DateTime
     {
         return $this->dateCreated;
     }
@@ -83,7 +97,7 @@ class ExiProtocol
     /**
      * @return int
      */
-    public function getBookingReference()
+    public function getBookingReference(): ?int
     {
         return $this->bookingReference;
     }
@@ -92,7 +106,7 @@ class ExiProtocol
      * @param int $bookingReference
      * @return ExiProtocol
      */
-    public function setBookingReference($bookingReference)
+    public function setBookingReference(?int $bookingReference)
     {
         $this->bookingReference = $bookingReference;
         return $this;
@@ -101,7 +115,7 @@ class ExiProtocol
     /**
      * @return string
      */
-    public function getRequestType()
+    public function getRequestType(): ?string
     {
         return $this->requestType;
     }
@@ -110,7 +124,7 @@ class ExiProtocol
      * @param string $requestType
      * @return ExiProtocol
      */
-    public function setRequestType(string $requestType)
+    public function setRequestType(?string $requestType)
     {
         $this->requestType = $requestType;
         return $this;
@@ -119,7 +133,7 @@ class ExiProtocol
     /**
      * @return string
      */
-    public function getRequest()
+    public function getRequest(): ?string
     {
         return $this->request;
     }
@@ -128,7 +142,7 @@ class ExiProtocol
      * @param string $request
      * @return ExiProtocol
      */
-    public function setRequest(string $request)
+    public function setRequest(?string $request)
     {
         $this->request = $request;
         return $this;
@@ -137,7 +151,7 @@ class ExiProtocol
     /**
      * @return string
      */
-    public function getResponse()
+    public function getResponse(): ?string
     {
         return $this->response;
     }
@@ -146,9 +160,45 @@ class ExiProtocol
      * @param string $response
      * @return ExiProtocol
      */
-    public function setResponse(string $response)
+    public function setResponse(?string $response)
     {
         $this->response = $response;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExported(): ?bool
+    {
+        return $this->isExported;
+    }
+
+    /**
+     * @param bool $isExported
+     * @return ExiProtocol
+     */
+    public function setIsExported(?bool $isExported): ExiProtocol
+    {
+        $this->isExported = $isExported;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isError(): ?bool
+    {
+        return $this->isError;
+    }
+
+    /**
+     * @param bool $isError
+     * @return ExiProtocol
+     */
+    public function setIsError(?bool $isError): ExiProtocol
+    {
+        $this->isError = $isError;
         return $this;
     }
 
