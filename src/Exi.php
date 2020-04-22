@@ -106,7 +106,12 @@ class Exi
                 null !== $this->exiService->getResponse()->getUserError() ||
                 null !== $this->exiService->getResponse()->getSystemError()
             )
-            ->setIsExported(0);
+            ->setIsExported(0)
+            ->setVsnr(
+                $requestType == 'Booking' && !$exiProtocol->isError() ?
+                    $this->exiService->getResponse()->getPolicy()->getVsnr() :
+                    null
+            );
         $this->em->persist($exiProtocol);
         $this->em->flush();
     }

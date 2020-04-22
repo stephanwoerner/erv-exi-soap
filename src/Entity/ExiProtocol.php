@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Aktion
  *
- * @ORM\Table(name="exi_protocol", indexes={@ORM\Index(name="idx_exi_protocol_booking_reference", columns={"booking_reference"})})
+ * @ORM\Table(name="exi_protocol", indexes={@ORM\Index(name="idx_exi_protocol_booking_reference", columns={"booking_reference"}), @ORM\Index(name="idx_exi_protocol_vsnr", columns={"vsnr"})})
  * @ORM\Entity
  */
 class ExiProtocol
@@ -31,6 +31,13 @@ class ExiProtocol
      * @ORM\Column(name="booking_reference", type="integer", nullable=true)
      */
     private $bookingReference;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="vsnr", type="integer", nullable=true)
+     */
+    private $vsnr;
 
     /**
      * @var string
@@ -100,6 +107,24 @@ class ExiProtocol
     public function getBookingReference(): ?int
     {
         return $this->bookingReference;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVsnr(): ?int
+    {
+        return $this->vsnr;
+    }
+
+    /**
+     * @param int $vsnr
+     * @return ExiProtocol
+     */
+    public function setVsnr(?int $vsnr): ExiProtocol
+    {
+        $this->vsnr = $vsnr;
+        return $this;
     }
 
     /**
