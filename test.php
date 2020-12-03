@@ -40,7 +40,7 @@ $exi = new \StephanWoerner\ErvExiSoap\Exi(
     'test@test.de'
 );
 $exi->init(
-    'https://erv-sandbox.pcibooking.net/exiws201802/ExiConnector?wsdl',
+    'https://egate2.erv.de/exiws201909/ExiConnector?wsdl',
     'EUR',
     'DE',
     'DEU',

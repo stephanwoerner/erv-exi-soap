@@ -43,7 +43,7 @@ CREATE TABLE exi_protocol (id INT AUTO_INCREMENT NOT NULL, date_created DATETIME
 $exi = $this->container->get('sw.exi');
 
 $exi->init(
-    'https://erv-sandbox.pcibooking.net/exiws201802/ExiConnector?wsdl',
+    'https://egate2.erv.de/exiws201909/ExiConnector?wsdl',
     'EUR',
     'DE',
     'DEU',
