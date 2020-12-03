@@ -11,13 +11,13 @@ class serviceRenewalPremium
     protected $_ = null;
 
     /**
-     * @var anonymous73 $premiumtype
+     * @var anonymous77 $premiumtype
      */
     protected $premiumtype = null;
 
     /**
      * @param servicePremiumType $_
-     * @param anonymous73 $premiumtype
+     * @param anonymous77 $premiumtype
      */
     public function __construct($_, $premiumtype)
     {
@@ -44,7 +44,7 @@ class serviceRenewalPremium
     }
 
     /**
-     * @return anonymous73
+     * @return anonymous77
      */
     public function getPremiumtype()
     {
@@ -52,7 +52,7 @@ class serviceRenewalPremium
     }
 
     /**
-     * @param anonymous73 $premiumtype
+     * @param anonymous77 $premiumtype
      * @return \StephanWoerner\ErvExiSoap\Model\serviceRenewalPremium
      */
     public function setPremiumtype($premiumtype)

@@ -43,7 +43,7 @@ CREATE TABLE exi_protocol (id INT AUTO_INCREMENT NOT NULL, date_created DATETIME
 $exi = $this->container->get('sw.exi');
 
 $exi->init(
-    'https://egate2.erv.de/exiws201802/ExiConnector?wsdl',
+    'https://erv-sandbox.pcibooking.net/exiws201802/ExiConnector?wsdl',
     'EUR',
     'DE',
     'DEU',
@@ -81,3 +81,28 @@ $responseOffer = $exi->callRequestOffer(
 #Example without using Symfony framework.
 Look at test.php
 
+
+#Release notes
+````
+release_v9
+New amazonPayment
+New apAmount
+New apPaymentType
+New amazonPayment
+New ClientTypeType
+New creditcardHolderType
+New initiatorType
+New payPageData
+New payPageUrl
+New psd2ParameterType
+New requestPayPageUrl
+New responsePayPageUrl
+acceptedPayments: + amazonPayment
+agentType: + initiator default 'CUSTOMER'
+ccPaymentType: + psd2Parameter, + ccPayPageHandleId
+customerType: streetAndNr length 100
+paymentMethodType: + ap/AP
+paymentType: + amazonPay
+servicePremium: anonymous length 75
+serviceRenewalPremium: anonymous length 77
+````

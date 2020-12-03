@@ -21,11 +21,18 @@ class agentType
     protected $providerAss = null;
 
     /**
-     * @param StringLength1to64 $agency
+     * @var initiatorType $initiator
      */
-    public function __construct($agency)
+    protected $initiator = null;
+
+    /**
+     * @param StringLength1to64 $agency
+     * @param initiatorType $initiator
+     */
+    public function __construct($agency, $initiator)
     {
       $this->agency = $agency;
+      $this->initiator = $initiator;
     }
 
     /**
@@ -79,6 +86,24 @@ class agentType
     public function setProviderAss($providerAss)
     {
       $this->providerAss = $providerAss;
+      return $this;
+    }
+
+    /**
+     * @return initiatorType
+     */
+    public function getInitiator()
+    {
+      return $this->initiator;
+    }
+
+    /**
+     * @param initiatorType $initiator
+     * @return \StephanWoerner\ErvExiSoap\Model\agentType
+     */
+    public function setInitiator($initiator)
+    {
+      $this->initiator = $initiator;
       return $this;
     }
 

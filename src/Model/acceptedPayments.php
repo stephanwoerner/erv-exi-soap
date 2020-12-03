@@ -21,15 +21,22 @@ class acceptedPayments
     protected $agencyCollection = null;
 
     /**
+     * @var amazonPayment $amazonPayment
+     */
+    protected $amazonPayment = null;
+
+    /**
      * @param cc $cc
      * @param bank $bank
      * @param agencyCollection $agencyCollection
+     * @param amazonPayment $amazonPayment
      */
-    public function __construct($cc, $bank, $agencyCollection)
+    public function __construct($cc, $bank, $agencyCollection, $amazonPayment)
     {
       $this->cc = $cc;
       $this->bank = $bank;
       $this->agencyCollection = $agencyCollection;
+      $this->amazonPayment = $amazonPayment;
     }
 
     /**
@@ -83,6 +90,24 @@ class acceptedPayments
     public function setAgencyCollection($agencyCollection)
     {
       $this->agencyCollection = $agencyCollection;
+      return $this;
+    }
+
+    /**
+     * @return amazonPayment
+     */
+    public function getAmazonPayment()
+    {
+      return $this->amazonPayment;
+    }
+
+    /**
+     * @param amazonPayment $amazonPayment
+     * @return \StephanWoerner\ErvExiSoap\Model\acceptedPayments
+     */
+    public function setAmazonPayment($amazonPayment)
+    {
+      $this->amazonPayment = $amazonPayment;
       return $this;
     }
 

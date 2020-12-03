@@ -1,0 +1,1557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2013 rel. 2 sp1 (x64) (http://www.altova.com) von Friederike Sommer (ITERGO Lizenzmanagement) bearbeitet -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.erv.de/xsd/exi/ws/v201909" targetNamespace="http://www.erv.de/xsd/exi/ws/v201909" elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>EXI Types</xsd:documentation>
+	</xsd:annotation>
+	<!-- SIMPLE TYPES -->
+	<xsd:simpleType name="addressCustomerType">
+		<xsd:annotation>
+			<xsd:documentation>type for address [Typ fuer Anrede]</xsd:documentation>
+			<xsd:documentation>hr=mister [herr]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="hr"/>
+			<xsd:enumeration value="HR"/>
+			<xsd:enumeration value="fr"/>
+			<xsd:enumeration value="FR"/>
+			<xsd:enumeration value="fa"/>
+			<xsd:enumeration value="FA"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="addressDifferingAccountHolderType">
+		<xsd:annotation>
+			<xsd:documentation>type for address [Typ fuer Anrede]</xsd:documentation>
+			<xsd:documentation>hr=mister [herr]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="hr"/>
+			<xsd:enumeration value="HR"/>
+			<xsd:enumeration value="fr"/>
+			<xsd:enumeration value="FR"/>
+			<xsd:enumeration value="fa"/>
+			<xsd:enumeration value="FA"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="tariffCategoryType">
+		<xsd:annotation>
+			<xsd:documentation>type for tariffCategory [Typ fuer Tarif Kategorie,derzeit nur Rentals]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="AlphaStringLength2">
+			<xsd:enumeration value="AC"/>
+			<xsd:enumeration value="ac"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TripTypeType">
+		<xsd:annotation>
+			<xsd:documentation>type for tripType [Typ fuer Verkehrsmitteltyp]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="AlphaStringLength3">
+			<xsd:enumeration value="BUS"/>
+			<xsd:enumeration value="bus"/>
+			<xsd:enumeration value="CAR"/>
+			<xsd:enumeration value="car"/>
+			<xsd:enumeration value="CRU"/>
+			<xsd:enumeration value="cru"/>
+			<xsd:enumeration value="FLT"/>
+			<xsd:enumeration value="flt"/>
+			<xsd:enumeration value="TRN"/>
+			<xsd:enumeration value="trn"/>
+			<xsd:enumeration value="SCH"/>
+			<xsd:enumeration value="sch"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="addressTravellerType">
+		<xsd:annotation>
+			<xsd:documentation>type for address [Typ fuer Anrede]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="fr"/>
+			<xsd:enumeration value="hr"/>
+			<xsd:enumeration value="FR"/>
+			<xsd:enumeration value="HR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="money">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Es sind maximal 3-Dezimalstellen erlaubt.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Used for amounts, max 3 decimals</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:fractionDigits value="3"/>
+			<xsd:minInclusive value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="currencyCodeISO4217">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Währungskennzeichen nach ISO 4217 (3 Zeichen)</xsd:documentation>
+			<xsd:documentation xml:lang="en"> ISO 4217 currency code</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Z]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaStringLength2">
+		<xsd:annotation>
+			<xsd:documentation>Language Code ISO 639-2-Alpha-2 [Sprachkennzeichen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z]{2}|[a-z]{2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="paymentMethodType">
+		<xsd:annotation>
+			<xsd:documentation>type for method of payment [Zahlungsweise]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="be"/>
+			<xsd:enumeration value="BE"/>
+			<xsd:enumeration value="ai"/>
+			<xsd:enumeration value="AI"/>
+			<xsd:enumeration value="kk"/>
+			<xsd:enumeration value="KK"/>
+			<xsd:enumeration value="kx"/>
+			<xsd:enumeration value="KX"/>
+			<xsd:enumeration value="ap"/>
+			<xsd:enumeration value="AP"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="secureHandleIDType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV payment securehandle ID [Typ fuer ERV payment securehandle ID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="128"/>
+			<xsd:minLength value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="payPageHandleIDType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV payPagehandle ID [Typ fuer ERV payPagehandle ID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="128"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="servicePremiumType">
+		<xsd:annotation>
+			<xsd:documentation>type for servicePremium [Typ fuer ERV Service-Prämie]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="130"/>
+			<xsd:minLength value="0"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to16">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 16.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="16"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to6">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 6.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to7">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 7.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to10">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 7.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to50">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 50.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to30">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 30.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength0to30">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 0 to 30.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength0to60">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 0 to 60.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="60"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to60">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 0 to 60.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="60"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength0to50">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 0 to 50</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength0to100">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 0 to 100</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to250">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 250</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="250"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to100">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 100</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AlphaStringLength3">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Alpha Strings, length 3</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-z]{3}|[A-Z]{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="accountNumberType">
+		<xsd:annotation>
+			<xsd:documentation>type for account number [Typ fuer Kontonummer ]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ageType">
+		<xsd:annotation>
+			<xsd:documentation>type for age [Typ fuer Alter]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="assType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV agency structure key[Typ fuer AgenturStrukturSchluessel]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{1,5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="bankNumberType">
+		<xsd:annotation>
+			<xsd:documentation>type for bank Number [Typ fuer Bankleitzahl]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="cardHolderType">
+		<xsd:annotation>
+			<xsd:documentation>type for card holder [Typ fuer Karteninhaber]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="cvc2Type">
+		<xsd:annotation>
+			<xsd:documentation>type for cvc2 [Typ fuer CVC2]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{0,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ccNrType">
+		<xsd:annotation>
+			<xsd:documentation>type for creditcardnumber [Typ fuer Kreditkartennummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ccType">
+		<xsd:annotation>
+			<xsd:documentation>type for creditcard institutes [Typ fuer Kreditkarteninstitute]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="e"/>
+			<xsd:enumeration value="v"/>
+			<xsd:enumeration value="a"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="telType">
+		<xsd:annotation>
+			<xsd:documentation>type for telephonenumber [Typ fuer Telefonnummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="travelDurationType">
+		<xsd:annotation>
+			<xsd:documentation>type for travel Duration [Typ fuer Reisedauer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="730"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="vsnrType">
+		<xsd:annotation>
+			<xsd:documentation>type for policyNumber [Typ fuer Versicherungsscheinnummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]{9,10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StringLength1to64">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="en">Used for Character Strings, length 1 to 64.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- COMPLEX TYPES -->
+	<xsd:complexType name="agentType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV agencynumber [Typ fuer ERV AgenturNummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="agency" type="StringLength1to64">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Agency number of the requesting POS</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="travelAgent" type="StringLength1to30" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>travel agent [Expedient]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="providerAss" type="assType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>identifier for provider [Kennzeichen fuer Provider]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="initiator" type="initiatorType">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Defines the person who has initiated the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:attributeGroup name="preCiAsLinkGroup">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Pre Contract Information als Link senden</xsd:documentation>
+			<xsd:documentation xml:lang="en">send Pre Contract Information as link</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="sendLink" type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Link senden</xsd:documentation>
+				<xsd:documentation xml:lang="en">send url</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="sendAdditionalEmail" type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">zusätzlich Pre Contract Information eMail an den Kunden versenden</xsd:documentation>
+				<xsd:documentation xml:lang="en">send additional Pre Contract Information email to customer</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="policyAsLinkGroup">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Link zu Policy pdf senden</xsd:documentation>
+			<xsd:documentation xml:lang="en">send Policy pdf link</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="sendLink" type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Link senden</xsd:documentation>
+				<xsd:documentation xml:lang="en">send url</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="sendAdditionalEmail" type="xsd:boolean" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">zusätzlich Policen eMail an den Kunden versenden</xsd:documentation>
+				<xsd:documentation xml:lang="en">send additional policy email to customer</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:complexType name="agentWarningType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV agencynumber [Typ fuer ERV AgenturNummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="warning">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="300"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProlongationRqType">
+		<xsd:annotation>
+			<xsd:documentation>type for prolongation of anual insurances [Typ fuer Zustimmung zur automatischen Verlängerung von JV]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="agreed">
+				<xsd:annotation>
+					<xsd:documentation>the autimatical prolongation must be agreed. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="true"/>
+						<xsd:enumeration value="TRUE"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProlongationRpType">
+		<xsd:annotation>
+			<xsd:documentation>type for Prolongation of anual insurances [Typ fuer Zustimmung zur automatischen Verlängerung von JV]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="agreement">
+				<xsd:annotation>
+					<xsd:documentation>der automatischen Verlängerung von JV muss zugestimmt werden [Text für Zustimmung der automatischen Verlängerung bei JV]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="500"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="link" type="linkType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>link for ERV AVBs</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="insConditionsType">
+		<xsd:annotation>
+			<xsd:documentation>type for insurance conditions [Typ fuer Versicherungsbedingungen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="agreement">
+				<xsd:annotation>
+					<xsd:documentation>the AVBs must be agreed. this is the agreement text [Text für Zustimmung der AVBs]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="500"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="productLineUrls">
+				<xsd:annotation>
+					<xsd:documentation>service benefits [Leistungsbeschreibung]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="descriptionURL" type="DescriptionURLType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="insConditionsRqType">
+		<xsd:annotation>
+			<xsd:documentation>type for insurance conditions [Typ fuer Versicherungsbedingungen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="agreed">
+				<xsd:annotation>
+					<xsd:documentation>the AVBs must be agreed. </xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="true"/>
+						<xsd:enumeration value="TRUE"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="linkType">
+		<xsd:annotation>
+			<xsd:documentation>type for link representation [Typ für Linkdarstellung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="label" type="StringLength0to50">
+				<xsd:annotation>
+					<xsd:documentation>link text [Linktext]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="href" type="StringLength0to100">
+				<xsd:annotation>
+					<xsd:documentation>url [URL]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="localisationType">
+		<xsd:annotation>
+			<xsd:documentation> type for locale informations [Typ fuer Laenderinformationen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="countryCode" type="AlphaStringLength3">
+				<xsd:annotation>
+					<xsd:documentation>Country Code ISO 3166-1-Alpha-3  [Laenderkennzeichen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="languageCode" type="AlphaStringLength2">
+				<xsd:annotation>
+					<xsd:documentation>Language Code ISO 639-2-Alpha-2 [Sprachkennzeichen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="currencyCode" type="AlphaStringLength3">
+				<xsd:annotation>
+					<xsd:documentation>Currency CODE ISO 4217-Alpha-3 [Währungskennzeichen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="customerType">
+		<xsd:annotation>
+			<xsd:documentation>type for customer [Typ fuer Versicherungsnehmer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="address" type="addressCustomerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>form of salutation [Anrede]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="prename" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation>first name [Vorname]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="surname" type="StringLength1to60">
+				<xsd:annotation>
+					<xsd:documentation>last name [Nachname]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="streetAndNr" type="StringLength1to100">
+				<xsd:annotation>
+					<xsd:documentation>name of street and number [Strasse und Hausnummer]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="zipCode" type="StringLength1to7">
+				<xsd:annotation>
+					<xsd:documentation>zip code [PLZ]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="city" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation>city [ort]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="countryCode" type="AlphaStringLength3" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Country Code ISO 3166-1-Alpha-3  [Wohnitz]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="email" type="StringLength1to100">
+				<xsd:annotation>
+					<xsd:documentation>email address [Email]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="telPriv" type="telType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>telephone private [Telefonnummer privat]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="telBiz" type="telType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>telephone business [Telefonnummer geschaeftliche]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="telMobile" type="telType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>telephone mobile [Telefonnummer mobil]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="birthdate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Birthdate [Geburtsdatum]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="offersRpType">
+		<xsd:annotation>
+			<xsd:documentation>type for offer [Typ fuer Angebot]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="offer" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sequence">
+							<xsd:annotation>
+								<xsd:documentation>sequence for offer [Reihenfolge für Angebot/Produkt]</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:positiveInteger">
+									<xsd:minInclusive value="1"/>
+									<xsd:maxExclusive value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="offerID">
+							<xsd:annotation>
+								<xsd:documentation>Unique Reference number of offer [Eindeutige Offer-Referenz-Nummer]</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="500"/>
+									<xsd:minLength value="0"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="service">
+							<xsd:annotation>
+								<xsd:documentation>service [Leistung]</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="serviceType">
+										<xsd:attribute name="servicetype" type="StringLength1to50" use="required"/>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="acceptedPayments">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="de">Block, der die vom Anbieter akzeptierten Zahlungsarten enthält</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="cc">
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="acceptedCard" minOccurs="0" maxOccurs="11">
+													<xsd:complexType>
+														<xsd:attribute name="ccType" type="ccType" use="required">
+															<xsd:annotation>
+																<xsd:documentation xml:lang="de">Bestimmt einen Kreditkartentyp, der zur Zahlung akzeptiert wird.</xsd:documentation>
+															</xsd:annotation>
+														</xsd:attribute>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+											<xsd:attribute name="accepted" type="xsd:boolean" use="required">
+												<xsd:annotation>
+													<xsd:documentation xml:lang="de">Flag, das kennzeichnet, ob  generell Kreditkarten als Zahlungsmittel akzeptiert wird.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="bank">
+										<xsd:complexType>
+											<xsd:attribute name="accepted" type="xsd:boolean" use="required">
+												<xsd:annotation>
+													<xsd:documentation>Flag, das kennzeichnet, ob das Elektronische Lastschriftverfahren als Zahlungsmittel akzeptiert wird.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="agencyCollection">
+										<xsd:complexType>
+											<xsd:attribute name="accepted" type="xsd:boolean" use="required">
+												<xsd:annotation>
+													<xsd:documentation>Flag, das kennzeichnet, ob Agenturinkasso als Zahlungsmittel akzeptiert wird.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="amazonPayment">
+										<xsd:complexType>
+											<xsd:attribute name="accepted" type="xsd:boolean" use="required">
+												<xsd:annotation>
+													<xsd:documentation>Flag, das kennzeichnet, ob Amazon Payment als Zahlungsmittel akzeptiert wird.</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="benefits">
+							<xsd:annotation>
+								<xsd:documentation>service benefits [Leistungsbeschreibung]</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="descriptionURL" type="DescriptionURLType" minOccurs="0" maxOccurs="unbounded"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="offersRqType">
+		<xsd:annotation>
+			<xsd:documentation>type for offer [Typ fuer Angebot]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="offer">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="offerID">
+							<xsd:annotation>
+								<xsd:documentation>Unique Reference number of offer [Eindeutige Offer-Referenz-Nummer]</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="500"/>
+									<xsd:minLength value="1"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="differingAccountHolderType">
+		<xsd:sequence>
+			<xsd:element name="address" type="addressDifferingAccountHolderType" minOccurs="0"/>
+			<xsd:element name="prename" type="StringLength0to30"/>
+			<xsd:element name="surname" type="StringLength1to30"/>
+			<xsd:element name="streetAndNr" type="StringLength1to30"/>
+			<xsd:element name="zipCode" type="StringLength1to7">
+				<xsd:annotation>
+					<xsd:documentation>zip code [PLZ]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="city" type="StringLength1to30"/>
+			<xsd:element name="countryCode" type="AlphaStringLength3"/>
+			<xsd:element name="email" type="StringLength1to100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="creditcardHolderType">
+		<xsd:sequence>
+			<xsd:element name="prename" type="StringLength0to30">
+				<xsd:annotation>
+					<xsd:documentation>cardHolder prename [Vorname Kreditkarteninhaber]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="surname" type="StringLength1to60">
+				<xsd:annotation>
+					<xsd:documentation>cardHolder surname [Name Kreditkarteninhaber]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="streetAndNumber" type="StringLength1to50">
+				<xsd:annotation>
+					<xsd:documentation>street [Strasse]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="zipCode" type="StringLength1to7">
+				<xsd:annotation>
+					<xsd:documentation>zip code [PLZ]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="city" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation>city [Stadt]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="countryCode" type="AlphaStringLength2">
+				<xsd:annotation>
+					<xsd:documentation>country [Land 2-stellig]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="email" type="StringLength1to100" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>email address [eMail Adresse]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="paymentType">
+		<xsd:annotation>
+			<xsd:documentation>type for payment [Typ fuer Zahlung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="method" type="paymentMethodType">
+				<xsd:annotation>
+					<xsd:documentation>payment method [Zahlungsweise]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="cc" type="ccPaymentType">
+					<xsd:annotation>
+						<xsd:documentation>pay with credit card</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="bank" type="bankPaymentType">
+					<xsd:annotation>
+						<xsd:documentation>pay with bank collection</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="amazonPay" type="apPaymentType">
+					<xsd:annotation>
+						<xsd:documentation>pay with amazon payment</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="productSpecType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV product specifics [ERV Produktspezifika]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="productLine" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation>productline [Produktlinie]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tourOperator" type="StringLength1to30" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>touroperator [Veranstalter]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="providerDataType">
+		<xsd:annotation>
+			<xsd:documentation>type for ERV provider data [ERV Provider Daten]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="textField" type="StringLength0to60">
+				<xsd:annotation>
+					<xsd:documentation>textfield [Textfeld]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="serviceType">
+		<xsd:annotation>
+			<xsd:documentation>type for service [Typ fuer Service]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="serviceDesc" type="StringLength1to100">
+				<xsd:annotation>
+					<xsd:documentation>service description [Servicebeschreibung]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="servicePremium">
+				<xsd:annotation>
+					<xsd:documentation>service price [Servicepreis]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="servicePremiumType">
+							<xsd:attribute name="premiumtype" use="required">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="1"/>
+										<xsd:minLength value="0"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="serviceRenewalPremium" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>service renewal price [Servicepreis]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="servicePremiumType">
+							<xsd:attribute name="premiumtype" use="required">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:maxLength value="1"/>
+										<xsd:minLength value="0"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="serviceDescAndPremium" type="StringLength0to100">
+				<xsd:annotation>
+					<xsd:documentation>service description and service premium in one [Servicebeschreibung und Servicepreis zusammen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="serviceDescAndRenewalPremium" type="StringLength0to100" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>service description and service renewal premium in one [Servicebeschreibung und Servicefolgepreis zusammen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="tariffs" type="tariffsType">
+				<xsd:annotation>
+					<xsd:documentation>tariff list [Tarife]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="systemRqType">
+		<xsd:annotation>
+			<xsd:documentation>type for exi system data [Typ fuer Systeminformationen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="testIdentifier" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>Test/Production identifier [Kennzeichen ob Test oder Produktion]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="localisation" type="localisationType">
+				<xsd:annotation>
+					<xsd:documentation>locale informations [Laenderinformationen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="version" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string"/>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="systemRpType">
+		<xsd:annotation>
+			<xsd:documentation>type for exi system data [Typ fuer Systeminformationen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="localisation" type="localisationType">
+				<xsd:annotation>
+					<xsd:documentation>locale informations [Laenderinformationen]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="tariffsType">
+		<xsd:annotation>
+			<xsd:documentation>type for tariff list [Typ fuer Tarifliste]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tariff" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="key" type="StringLength1to6">
+							<xsd:annotation>
+								<xsd:documentation>tariff key [Tarifschluessel]</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="premium">
+							<xsd:annotation>
+								<xsd:documentation>tariff premium</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:fractionDigits value="2"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="renewalPremium" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>tariff renewal premium</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:decimal">
+									<xsd:fractionDigits value="2"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="travelType">
+		<xsd:annotation>
+			<xsd:documentation> type for travel information [Typ fuer Reiseinformationen]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="time">
+				<xsd:annotation>
+					<xsd:documentation>travel time [Reisezeit]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="fromDate" type="xsd:date">
+							<xsd:annotation>
+								<xsd:documentation>begin date (ISO 8601) [Datum des Reisebeginns] CCYY-MM-DD</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:choice maxOccurs="1">
+							<xsd:element name="endDate" type="xsd:date">
+								<xsd:annotation>
+									<xsd:documentation>end date (ISO 8601) [Datum des Reiseendes]  CCYY-MM-DD</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<xsd:element name="duration" type="travelDurationType">
+								<xsd:annotation>
+									<xsd:documentation>duration in days [Reisedauer in Tagen]</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:choice>
+						<xsd:element name="bookingConfirmationDate" type="xsd:date" minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation>booking confirmation date (ISO 8601) [Datum der Buchungsbestätigung] CCYY-MM-DD</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="tripType" type="TripTypeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Angabe des Verkehrsmittels</xsd:documentation>
+					<xsd:documentation xml:lang="en">Travel type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="destination" type="destinationType" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Angabe des Reiseziels, um den Geltungsbereich der zu buchenden Versicherungsleistung ermitteln zu können.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Trip destination</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="totalTripCost" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Gesamtreisepreis für alle versicherten Personen (Reisenden).</xsd:documentation>
+					<xsd:documentation xml:lang="en">Total trip cost</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attributeGroup ref="currencyAmountGroup"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="tariffCategory" type="tariffCategoryType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>versobject type</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="bankPaymentType">
+		<xsd:annotation>
+			<xsd:documentation>type for payment with credit card or with cc secureHandle ID [Typ fuer Kreditkartenzahlung oder mit cc secureHandle ID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:sequence>
+				<xsd:element name="bankNumber" type="bankNumberType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>bank number [Bankleitzahl]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="accountNumber" type="accountNumberType">
+					<xsd:annotation>
+						<xsd:documentation>account number [Kontonummer]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="differingAccountHolder" type="differingAccountHolderType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>differing account holder [vom VN abweichender Kontoinhaber]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:element name="bankSecureHandleID" type="secureHandleIDType">
+				<xsd:annotation>
+					<xsd:documentation>pay with cc secureHandle ID</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="ccPaymentType">
+		<xsd:annotation>
+			<xsd:documentation>type for payment with credit card or with cc secureHandle ID [Typ fuer Kreditkartenzahlung oder mit cc secureHandle ID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:choice>
+			<xsd:sequence>
+				<xsd:element name="ccNr" type="ccNrType">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Kreditkartennummer.</xsd:documentation>
+						<xsd:documentation xml:lang="en">Credit card number embossed on the card.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ccHolder" type="cardHolderType">
+					<xsd:annotation>
+						<xsd:documentation>credit card holder [Kreditkarteninhaber]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ccType" type="ccType">
+					<xsd:annotation>
+						<xsd:documentation>credit card insitute [Kreditkarteninsitut]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="cvc2" type="cvc2Type" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>additional check number [Pruefziffer]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ccValid" type="ccValidType">
+					<xsd:annotation>
+						<xsd:documentation>valid to  [Gueltig bis]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="psd2Parameter" type="psd2ParameterType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>PSD2 parameter, mandatory if ccPaymentMode is ecommerce  [PSD2 Parameter, mandatory bei ccPaymentMode ecommerce]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:element name="ccSecureHandleID" type="secureHandleIDType">
+				<xsd:annotation>
+					<xsd:documentation>pay with cc secureHandle ID</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ccPayPageHandleId" type="payPageHandleIDType">
+				<xsd:annotation>
+					<xsd:documentation>pay with PayPage</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="apPaymentType">
+		<xsd:annotation>
+			<xsd:documentation>type for payment with Amazon Pay</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="apSellerId" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">AmazonPay Seller ID</xsd:documentation>
+					<xsd:documentation xml:lang="en">Amazon Pay seller Id</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="apExternalAuthorization" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">AmazonPay Kennzeichen ob Autorisierung bereits durchgeführt wurde</xsd:documentation>
+					<xsd:documentation xml:lang="en">Amazon Pay true if authorization has been done yet external</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="apAuthorizationId" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">AmazonPay Autorisierungsnummer</xsd:documentation>
+					<xsd:documentation xml:lang="en">Amazon Pay authorization Id</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="apOrderId" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">AmazonPay OrderId</xsd:documentation>
+					<xsd:documentation xml:lang="en">Amazon Pay order Id</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="apBillingAgreementId" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">AmazonPay Referenz ID</xsd:documentation>
+					<xsd:documentation xml:lang="en">Amazon Pay reference Id</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="apAmount" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Amount</xsd:documentation>
+					<xsd:documentation xml:lang="en">amount for capture</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attributeGroup ref="currencyAmountGroup"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="psd2ParameterType">
+		<xsd:annotation>
+			<xsd:documentation>type for psd2 parameter [Typ fuer PSD2 Parameter]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="cavv">
+				<xsd:annotation>
+					<xsd:documentation>Cardholder Authentication Verification Value for 1.0 or 2.0</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="eci" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Electronic Commerce Indicator only V2.0</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="2"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="threeDSVersion">
+				<xsd:annotation>
+					<xsd:documentation>3D Secure Version 1.0.2 or 2.1.0</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="5"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="threeDSTransactionId">
+				<xsd:annotation>
+					<xsd:documentation>TransaktionsId 3D Secure 1.0 -xid- or 2.0 -dstid-</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="50"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="psd2Extensions" type="extensionsType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>probably additional fields for PSD2 Authorization [mögliche weitere Felder für PSD2]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="initiatorType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="broker">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The initiator of the request is a broker, e.g. insurance broker, travel agent. Typical "broker" systems: GDS, CRS.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="customer">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">The initiator of the request is end-consumer. Typical "customer" systems: IBE.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ClientTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="standard">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">standard client</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="mobile">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">mobile client</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ccValidType">
+		<xsd:annotation>
+			<xsd:documentation>type for validity of credit card [Typ fuer Gueltigkeit von Kreditkarten]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="mm">
+				<xsd:annotation>
+					<xsd:documentation>valid to month [Monat]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger">
+						<xsd:minInclusive value="1"/>
+						<xsd:maxInclusive value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="yyyy">
+				<xsd:annotation>
+					<xsd:documentation>valid to year [Year]</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:positiveInteger">
+						<xsd:minInclusive value="1000"/>
+						<xsd:maxInclusive value="9999"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DescriptionURLType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Container für Beschreibungsinformationen.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Container for description information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:anyURI">
+				<xsd:attribute name="type" type="StringLength1to16" use="required"/>
+				<xsd:attribute name="label" type="StringLength1to100" use="required"/>
+				<xsd:attribute name="defaultInd" type="xsd:boolean" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="preContractualInformationItemType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Container für Beschreibungsinformationen.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Container for description information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="productName" type="StringLength1to100"/>
+			<xsd:element name="preContractualInformationUrl" type="DescriptionURLType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="preContractualInformationType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Container für Beschreibungsinformationen.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Container for description information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="preContractualInformationItem" type="preContractualInformationItemType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="destinationType">
+		<xsd:choice>
+			<xsd:element name="countryCode" type="AlphaStringLength3" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">ISO3166 country code</xsd:documentation>
+					<xsd:documentation xml:lang="en">ISO3166 country code</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="airportCode" type="AlphaStringLength3" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">IATA airport code</xsd:documentation>
+					<xsd:documentation xml:lang="en">IATA airport code</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="coveredTravelersType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Daten der zu versichernden Personen (Reisenden).</xsd:documentation>
+			<xsd:documentation xml:lang="en">Container for covered travelers</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="coveredTraveler" type="coveredTravelerType" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="coveredTravelerType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Personenbezogene Daten einer versicherten Person (Reisender).</xsd:documentation>
+			<xsd:documentation xml:lang="en">Contains identifying information as well as coverage requirements and journey information for each individual requesting coverage by the insurance plan.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="coveredPerson" type="personType">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Namensdaten der versicherten Person (Reisenden).</xsd:documentation>
+					<xsd:documentation xml:lang="en">Name data of the covered person</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="indCoverage" type="indCoverageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Individuelle Deckungssummen und Reisepreis der versicherten Person (Reisenden).</xsd:documentation>
+					<xsd:documentation xml:lang="en">Container for individual coverage details.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:positiveInteger" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Eindeutiger Identifikator einer versicherten Person (Reisenden)</xsd:documentation>
+				<xsd:documentation xml:lang="en">Unique covered person identifier</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="personType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Container für personenbezogene Daten.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Container for person data</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="personName" type="personNameType">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Namensdaten der Person.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Name data of the person</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="birthdate" type="xsd:date">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Geburtsdatum</xsd:documentation>
+						<xsd:documentation xml:lang="en">Birthdate</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="age" type="xsd:nonNegativeInteger">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Alter</xsd:documentation>
+						<xsd:documentation xml:lang="en">Age</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="personNameType">
+		<xsd:annotation>
+			<xsd:documentation>type for travellers name [Typ fuer Namen der Reisende]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="address" type="addressTravellerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>form of salutation [Anrede]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="prename" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation>firstname [Vorname]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="surname" type="StringLength1to60">
+				<xsd:annotation>
+					<xsd:documentation>lastname [Nachname]</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="searchTravelersType">
+		<xsd:sequence>
+			<xsd:element name="searchTraveler" type="searchTravelerType" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extensionsType">
+		<xsd:sequence>
+			<xsd:element name="extension" type="extensionType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="extensionType">
+		<xsd:sequence>
+			<xsd:element name="key" type="StringLength1to30">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Bezeichner</xsd:documentation>
+					<xsd:documentation xml:lang="en">Key</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="value" type="StringLength1to250">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Inhalt</xsd:documentation>
+					<xsd:documentation xml:lang="en">value</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="searchTravelerType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="birthdate" type="xsd:date">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Geburtsdatum</xsd:documentation>
+						<xsd:documentation xml:lang="en">Birthdate</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="age" type="xsd:nonNegativeInteger">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Alter</xsd:documentation>
+						<xsd:documentation xml:lang="en">Age</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			<xsd:element name="indCoverage" type="indCoverageType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:positiveInteger" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Eindeutiger Identifier</xsd:documentation>
+				<xsd:documentation xml:lang="en">Unique identifier</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="indCoverageType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Enthält individuelle reisespezifische Informationen.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Contains identifying information as well as coverage requirements and journey information for each individual.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="tripCost" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Individueller Reisepreis.</xsd:documentation>
+					<xsd:documentation xml:lang="en">Individual trip price.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attributeGroup ref="currencyAmountGroup"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="coveredLuggage" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Individuelle Deckungssumme Gepäck..</xsd:documentation>
+					<xsd:documentation xml:lang="en">Individual luggage coverage sum.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attributeGroup ref="currencyAmountGroup"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:attributeGroup name="currencyAmountGroup">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Geldbetrag mit Währungsangaben.</xsd:documentation>
+			<xsd:documentation xml:lang="en">Provides a monetary amount and the currency code to reflect the currency in which this amount is expressed.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="amount" type="money" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Währungsbetrag.</xsd:documentation>
+				<xsd:documentation xml:lang="en">Amount</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="currencyCode" type="currencyCodeISO4217" use="required">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="de">Währungskennzeichen nach ISO 4217 (3 Zeichen)</xsd:documentation>
+				<xsd:documentation xml:lang="en">The code specifying a monetary unit. Use ISO 4217, three alpha code.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+</xsd:schema>

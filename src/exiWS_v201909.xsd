@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2013 rel. 2 sp1 (x64) (http://www.altova.com) von Friederike Sommer (ITERGO Lizenzmanagement) bearbeitet -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.erv.de/xsd/exi/ws/v201909" targetNamespace="http://www.erv.de/xsd/exi/ws/v201909" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="commonTypes_v201909.xsd"/>
+	<xsd:element name="requestOffer">
+		<xsd:annotation>
+			<xsd:documentation>request for demand of ERV offers [Request mit Anforderung von ERV Angeboten]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="system" type="systemRqType"/>
+				<xsd:element name="agent" type="agentType"/>
+				<xsd:element name="providerData" type="providerDataType" minOccurs="0"/>
+				<xsd:element name="productSpec" type="productSpecType">
+					<xsd:annotation>
+						<xsd:documentation>poduct specifica</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="customerResidenceCountryCode" type="AlphaStringLength3" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Customer Country Code ISO 3166-1-Alpha-3  [Wohnitz]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="travel" type="travelType">
+					<xsd:annotation>
+						<xsd:documentation>travel data [Reise]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="searchTravelers" type="searchTravelersType">
+					<xsd:annotation>
+						<xsd:documentation>traveler data [Versicherte Personen]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="responseOffer">
+		<xsd:annotation>
+			<xsd:documentation>response with ERV offers [Response mit ERV Angeboten]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="system" type="systemRpType"/>
+					<xsd:choice>
+						<xsd:element name="noCustomerCountryInfoText" type="StringLength1to250"/>
+						<xsd:element name="offers" type="offersRpType">
+							<xsd:annotation>
+								<xsd:documentation>ERV offers [ERV Produkt Angebote]</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:element name="insConditions" type="insConditionsType">
+						<xsd:annotation>
+							<xsd:documentation>ERV insurance conditions (AVBs) [Versicherungsbediungen der ERV]</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="prolongation" type="ProlongationRpType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Agreement with automatical prolongation by anual insurances</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="systemError" type="systemErrorContainerType"/>
+				<xsd:element name="userError" type="userErrorContainerType"/>
+			</xsd:choice>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+			<xsd:attribute name="responseID" type="responseIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="requestPayPageUrl">
+		<xsd:annotation>
+			<xsd:documentation>request for PaymentServiceFormular Url [Request für die PaymentService Formular URL]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="system" type="systemRqType"/>
+				<xsd:element name="agent" type="agentType"/>
+				<xsd:element name="payPageData">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="successUrl" type="xsd:anyURI"/>
+							<xsd:element name="errorUrl" type="xsd:anyURI" minOccurs="0"/>
+							<xsd:element name="notificationFailedUrl" type="xsd:anyURI" minOccurs="0"/>
+							<xsd:element name="clientType" type="ClientTypeType"/>
+							<xsd:element name="creditCardHolder" type="creditcardHolderType" minOccurs="0"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="responsePayPageUrl">
+		<xsd:annotation>
+			<xsd:documentation>response with PaymentServiceFormular Url [Response mit der PaymentService Formular URL]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="system" type="systemRpType"/>
+					<xsd:element name="payPageUrl">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="payPageHandleId" type="payPageHandleIDType"/>
+								<xsd:element name="url" type="xsd:anyURI"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:element name="systemError" type="systemErrorContainerType"/>
+				<xsd:element name="userError" type="userErrorContainerType"/>
+			</xsd:choice>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+			<xsd:attribute name="responseID" type="responseIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="requestPreContractualInformation">
+		<xsd:annotation>
+			<xsd:documentation>request with demand of booking [Request mit Anforderung einer Buchung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="system" type="systemRqType"/>
+				<xsd:element name="agent" type="agentType"/>
+				<xsd:element name="offerID">
+					<xsd:annotation>
+						<xsd:documentation>Unique Reference number of offer [Eindeutige Offer-Referenz-Nummer]</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="500"/>
+							<xsd:minLength value="1"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="travel" type="travelType"/>
+				<xsd:element name="coveredTravelers" type="coveredTravelersType"/>
+				<xsd:element name="customer" type="customerType">
+					<xsd:annotation>
+						<xsd:documentation>customer [Vertragsnehmer]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="responsePreContractualInformation">
+		<xsd:annotation>
+			<xsd:documentation>response with booking confirmation [Response mit Buchungsantwort]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="system" type="systemRpType"/>
+					<xsd:element name="preContractualInformationID" type="StringLength1to50"/>
+					<xsd:element name="recordOfAdviceUrl" type="xsd:anyURI" minOccurs="0"/>
+					<xsd:element name="preContractualInformation" type="preContractualInformationType"/>
+					<xsd:element name="preContractualInformationText">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1"/>
+								<xsd:maxLength value="500"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="userError" type="userErrorContainerType"/>
+				<xsd:element name="systemError" type="systemErrorContainerType"/>
+			</xsd:choice>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+			<xsd:attribute name="responseID" type="responseIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="requestBooking">
+		<xsd:annotation>
+			<xsd:documentation>request with demand of booking [Request mit Anforderung einer Buchung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="system" type="systemRqType"/>
+				<xsd:element name="agent" type="agentType"/>
+				<xsd:element name="policyAsLink" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="de">Policy pdf Link senden</xsd:documentation>
+						<xsd:documentation xml:lang="en">send policy pdf link</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:attributeGroup ref="policyAsLinkGroup"/>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="providerData" type="providerDataType" minOccurs="0"/>
+				<xsd:element name="productSpec" type="productSpecType"/>
+				<xsd:element name="travel" type="travelType"/>
+				<xsd:element name="coveredTravelers" type="coveredTravelersType"/>
+				<xsd:element name="offers" type="offersRqType">
+					<xsd:annotation>
+						<xsd:documentation>List of offers which the user has selected. Normally the user selected one.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="preContractualInformationID" type="StringLength1to50" minOccurs="0"/>
+				<xsd:element name="customer" type="customerType">
+					<xsd:annotation>
+						<xsd:documentation>customer [Vertragsnehmer]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="payment" type="paymentType">
+					<xsd:annotation>
+						<xsd:documentation>payment [Zahlung]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="insConditions" type="insConditionsRqType">
+					<xsd:annotation>
+						<xsd:documentation>ERV insurance conditions (AVBs) [Versicherungsbediungen der ERV]</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="prolongationAgreement" type="ProlongationRqType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Agreement with automatical prolongation by anual insurances</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="responseBooking">
+		<xsd:annotation>
+			<xsd:documentation>response with booking confirmation [Response mit Buchungsantwort]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="system" type="systemRpType"/>
+					<xsd:element name="agent" type="agentWarningType" minOccurs="0"/>
+					<xsd:element name="policy">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="vsnr" type="vsnrType">
+									<xsd:annotation>
+										<xsd:documentation>policy number [Versicherungsnummer]</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+								<xsd:element name="totalPremium">
+									<xsd:annotation>
+										<xsd:documentation xml:lang="de">Gesamtpraemie</xsd:documentation>
+										<xsd:documentation xml:lang="en">total premium</xsd:documentation>
+									</xsd:annotation>
+									<xsd:complexType>
+										<xsd:attributeGroup ref="currencyAmountGroup"/>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="totalRenewalPremium" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation xml:lang="de">Gesamtfolgepraemie</xsd:documentation>
+										<xsd:documentation xml:lang="en">total renewal premium</xsd:documentation>
+									</xsd:annotation>
+									<xsd:complexType>
+										<xsd:attributeGroup ref="currencyAmountGroup"/>
+									</xsd:complexType>
+								</xsd:element>
+								<xsd:element name="policyPrintURL" minOccurs="0">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="200"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="policyAttachments" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation> [List of Atttachment Urls] </xsd:documentation>
+									</xsd:annotation>
+									<xsd:complexType>
+										<xsd:sequence>
+											<xsd:element name="policyAttachment" type="DescriptionURLType" maxOccurs="unbounded"/>
+										</xsd:sequence>
+									</xsd:complexType>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="thanx">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="text">
+									<xsd:annotation>
+										<xsd:documentation>confirmation text [Text fuer Buchungsbestaetigung]</xsd:documentation>
+									</xsd:annotation>
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:minLength value="1"/>
+											<xsd:maxLength value="1000"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:element>
+								<xsd:element name="link" type="linkType" minOccurs="0">
+									<xsd:annotation>
+										<xsd:documentation>link for confirmation text [Link mit Verweis auf Bestaetigungstext]</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="extensions" type="extensionsType" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="userError" type="userErrorContainerType"/>
+				<xsd:element name="systemError" type="systemErrorContainerType"/>
+			</xsd:choice>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+			<xsd:attribute name="responseID" type="responseIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="requestCancellation">
+		<xsd:annotation>
+			<xsd:documentation>request for cancellation of an ERV insurance [Request zur Stornierung einer  ERV Versicherung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="system" type="systemRqType"/>
+				<xsd:element name="agent" type="agentType"/>
+				<xsd:element name="policy">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="vsnr" type="vsnrType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="responseCancellation">
+		<xsd:annotation>
+			<xsd:documentation>response for Cancellation [Response auf Stornorequest]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:sequence>
+					<xsd:element name="system" type="systemRpType"/>
+					<xsd:element name="policy">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="vsnr" type="vsnrType">
+									<xsd:annotation>
+										<xsd:documentation>policy number [Versicherungsnummer]</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:element name="userError" type="userErrorContainerType"/>
+				<xsd:element name="systemError" type="systemErrorContainerType"/>
+			</xsd:choice>
+			<xsd:attribute name="requestID" type="requestIDType" use="required"/>
+			<xsd:attribute name="responseID" type="responseIDType" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="systemErrorContainerType">
+		<xsd:annotation>
+			<xsd:documentation>type for systemError [Typ fuer Systemfehler]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="error" type="errorType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="userErrorContainerType">
+		<xsd:annotation>
+			<xsd:documentation>type for userError [Typ fuer Userfehler]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="system" type="systemRpType"/>
+			<xsd:element name="errors" type="userErrorType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="userErrorType">
+		<xsd:annotation>
+			<xsd:documentation>type for an error [Typ fuer einen Fehleraufbau]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="error" type="errorType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="errorType">
+		<xsd:annotation>
+			<xsd:documentation>type for an error [Typ fuer einen Fehleraufbau]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="nr">
+				<xsd:simpleType>
+					<xsd:restriction base="errorNrType">
+						<xsd:minLength value="3"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="message" type="errorMessageType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="errorNrType">
+		<xsd:annotation>
+			<xsd:documentation>type for error number [Typ fuer Fehlernummer]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="3"/>
+			<xsd:pattern value="[0-9]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="errorMessageType">
+		<xsd:annotation>
+			<xsd:documentation>type for error message [Typ fuer Fehlermeldung]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="300"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="responseIDType">
+		<xsd:annotation>
+			<xsd:documentation>type for responseID [Typ fuer responseID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="requestIDType">
+		<xsd:annotation>
+			<xsd:documentation>type for requestID [Typ fuer requestID]</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

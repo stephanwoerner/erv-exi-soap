@@ -13,6 +13,8 @@ class paymentMethodType
     const KK = 'KK';
     const kx = 'kx';
     const KX = 'KX';
+    const ap = 'ap';
+    const AP = 'AP';
 
 
 }

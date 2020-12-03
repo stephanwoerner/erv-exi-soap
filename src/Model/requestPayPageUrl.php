@@ -2,7 +2,7 @@
 
 namespace StephanWoerner\ErvExiSoap\Model;
 
-class requestCancellation
+class requestPayPageUrl
 {
 
     /**
@@ -16,9 +16,9 @@ class requestCancellation
     protected $agent = null;
 
     /**
-     * @var policyRq $policy
+     * @var payPageData $payPageData
      */
-    protected $policy = null;
+    protected $payPageData = null;
 
     /**
      * @var requestIDType $requestID
@@ -28,14 +28,14 @@ class requestCancellation
     /**
      * @param systemRqType $system
      * @param agentType $agent
-     * @param policyRq $policy
+     * @param payPageData $payPageData
      * @param requestIDType $requestID
      */
-    public function __construct($system, $agent, $policy, $requestID)
+    public function __construct($system, $agent, $payPageData, $requestID)
     {
       $this->system = $system;
       $this->agent = $agent;
-      $this->policy = $policy;
+      $this->payPageData = $payPageData;
       $this->requestID = $requestID;
     }
 
@@ -49,7 +49,7 @@ class requestCancellation
 
     /**
      * @param systemRqType $system
-     * @return \StephanWoerner\ErvExiSoap\Model\requestCancellation
+     * @return \StephanWoerner\ErvExiSoap\Model\requestPayPageUrl
      */
     public function setSystem($system)
     {
@@ -67,7 +67,7 @@ class requestCancellation
 
     /**
      * @param agentType $agent
-     * @return \StephanWoerner\ErvExiSoap\Model\requestCancellation
+     * @return \StephanWoerner\ErvExiSoap\Model\requestPayPageUrl
      */
     public function setAgent($agent)
     {
@@ -76,20 +76,20 @@ class requestCancellation
     }
 
     /**
-     * @return policyRq
+     * @return payPageData
      */
-    public function getPolicy()
+    public function getPayPageData()
     {
-      return $this->policy;
+      return $this->payPageData;
     }
 
     /**
-     * @param policy $policy
-     * @return \StephanWoerner\ErvExiSoap\Model\requestCancellation
+     * @param payPageData $payPageData
+     * @return \StephanWoerner\ErvExiSoap\Model\requestPayPageUrl
      */
-    public function setPolicy($policy)
+    public function setPayPageData($payPageData)
     {
-      $this->policy = $policy;
+      $this->payPageData = $payPageData;
       return $this;
     }
 
@@ -103,7 +103,7 @@ class requestCancellation
 
     /**
      * @param requestIDType $requestID
-     * @return \StephanWoerner\ErvExiSoap\Model\requestCancellation
+     * @return \StephanWoerner\ErvExiSoap\Model\requestPayPageUrl
      */
     public function setRequestID($requestID)
     {

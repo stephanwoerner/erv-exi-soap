@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2013 rel. 2 sp1 (x64) (http://www.altova.com) von erv0500 (ITERGO Lizenzmanagement) bearbeitet -->
+<wsdl:definitions xmlns:erv="http://www.erv.de/xsd/exi/ws/v201909" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.erv.de/exiWS_v201909.wsdl" targetNamespace="http://www.erv.de/exiWS_v201909.wsdl">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import schemaLocation="exiWS_v201909.xsd" namespace="http://www.erv.de/xsd/exi/ws/v201909"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="requestOfferSoapIn">
+		<wsdl:part name="requestOffer" element="erv:requestOffer"/>
+	</wsdl:message>
+	<wsdl:message name="responseOfferSoapOut">
+		<wsdl:part name="responseOffer" element="erv:responseOffer"/>
+	</wsdl:message>
+	<wsdl:message name="requestBookingSoapIn">
+		<wsdl:part name="requestBooking" element="erv:requestBooking"/>
+	</wsdl:message>
+	<wsdl:message name="responseBookingSoapOut">
+		<wsdl:part name="responseBooking" element="erv:responseBooking"/>
+	</wsdl:message>
+	<wsdl:message name="requestCancellationSoapIn">
+		<wsdl:part name="requestCancellation" element="erv:requestCancellation"/>
+	</wsdl:message>
+	<wsdl:message name="responseCancellationSoapOut">
+		<wsdl:part name="responseCancellation" element="erv:responseCancellation"/>
+	</wsdl:message>
+	<wsdl:message name="requestPreContractualInformationSoapIn">
+		<wsdl:part name="requestPreContractualInformation" element="erv:requestPreContractualInformation"/>
+	</wsdl:message>
+	<wsdl:message name="responsePreContractualInformationSoapOut">
+		<wsdl:part name="responsePreContractualInformation" element="erv:responsePreContractualInformation"/>
+	</wsdl:message>
+	<wsdl:message name="requestPayPageUrlSoapIn">
+		<wsdl:part name="requestPayPageUrl" element="erv:requestPayPageUrl"/>
+	</wsdl:message>
+	<wsdl:message name="responsePayPageUrlSoapOut">
+		<wsdl:part name="responsePayPageUrl" element="erv:responsePayPageUrl"/>
+	</wsdl:message>	
+	<wsdl:portType name="ExiConnector">
+		<wsdl:operation name="requestOffer">
+			<wsdl:input message="tns:requestOfferSoapIn"/>
+			<wsdl:output message="tns:responseOfferSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="requestBooking">
+			<wsdl:input message="tns:requestBookingSoapIn"/>
+			<wsdl:output message="tns:responseBookingSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="requestCancellation">
+			<wsdl:input message="tns:requestCancellationSoapIn"/>
+			<wsdl:output message="tns:responseCancellationSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="requestPreContractualInformation">
+			<wsdl:input message="tns:requestPreContractualInformationSoapIn"/>
+			<wsdl:output message="tns:responsePreContractualInformationSoapOut"/>
+		</wsdl:operation>
+		<wsdl:operation name="requestPayPageUrl">
+			<wsdl:input message="tns:requestPayPageUrlSoapIn"/>
+			<wsdl:output message="tns:responsePayPageUrlSoapOut"/>
+		</wsdl:operation>		
+	</wsdl:portType>
+	<wsdl:binding name="Exi_SoapBinding" type="tns:ExiConnector">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="requestOffer">
+			<soap:operation soapAction="requestOffer" style="document"/>
+			<wsdl:input>
+				<soap:body parts="requestOffer" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="responseOffer" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="requestCancellation">
+			<soap:operation soapAction="requestCancellation" style="document"/>
+			<wsdl:input>
+				<soap:body parts="requestCancellation" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="responseCancellation" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="requestBooking">
+			<soap:operation soapAction="requestBooking" style="document"/>
+			<wsdl:input>
+				<soap:body parts="requestBooking" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="responseBooking" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="requestPreContractualInformation">
+			<soap:operation soapAction="requestPreContractualInformation"/>
+			<wsdl:input>
+				<soap:body parts="requestPreContractualInformation" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="responsePreContractualInformation" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="requestPayPageUrl">
+			<soap:operation soapAction="requestPayPageUrl"/>
+			<wsdl:input>
+				<soap:body parts="requestPayPageUrl" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="responsePayPageUrl" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+	</wsdl:binding>
+	<wsdl:service name="Exi_Service">
+		<wsdl:port name="ExiConnector" binding="tns:Exi_SoapBinding">
+			<soap:address location="REPLACED_JBOSS_LOCATION"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

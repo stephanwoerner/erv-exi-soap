@@ -21,7 +21,7 @@ class customerType
     protected $surname = null;
 
     /**
-     * @var StringLength1to30 $streetAndNr
+     * @var StringLength1to100 $streetAndNr
      */
     protected $streetAndNr = null;
 
@@ -61,9 +61,14 @@ class customerType
     protected $telMobile = null;
 
     /**
+     * @var date $birthdate
+     */
+    protected $birthdate = null;
+
+    /**
      * @param StringLength1to30 $prename
      * @param StringLength1to60 $surname
-     * @param StringLength1to30 $streetAndNr
+     * @param StringLength1to100 $streetAndNr
      * @param StringLength1to7 $zipCode
      * @param StringLength1to30 $city
      * @param AlphaStringLength3 $countryCode
@@ -135,7 +140,7 @@ class customerType
     }
 
     /**
-     * @return StringLength1to30
+     * @return StringLength1to100
      */
     public function getStreetAndNr()
     {
@@ -143,7 +148,7 @@ class customerType
     }
 
     /**
-     * @param StringLength1to30 $streetAndNr
+     * @param StringLength1to100 $streetAndNr
      * @return \StephanWoerner\ErvExiSoap\Model\customerType
      */
     public function setStreetAndNr($streetAndNr)
@@ -275,6 +280,24 @@ class customerType
     public function setTelMobile($telMobile)
     {
       $this->telMobile = $telMobile;
+      return $this;
+    }
+
+    /**
+     * @return date
+     */
+    public function getBirthdate()
+    {
+      return $this->birthdate;
+    }
+
+    /**
+     * @param date $birthdate
+     * @return \StephanWoerner\ErvExiSoap\Model\customerType
+     */
+    public function setBirthdate($birthdate)
+    {
+      $this->birthdate = $birthdate;
       return $this;
     }
 

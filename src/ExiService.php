@@ -83,6 +83,11 @@ class ExiService extends Exi_Service
     /**
      * @var string
      */
+    protected $initiator = 'CUSTOMER';
+
+    /**
+     * @var string
+     */
     protected $currency;
 
     /**
@@ -139,6 +144,24 @@ class ExiService extends Exi_Service
     }
 
     /**
+     * @return string
+     */
+    public function getInitiator(): ?string
+    {
+        return $this->initiator;
+    }
+
+    /**
+     * @param string $initiator
+     * @return ExiService
+     */
+    public function setInitiator(?string $initiator): ExiService
+    {
+        $this->initiator = $initiator;
+        return $this;
+    }
+
+    /**
      * @return object
      */
     public function getRequest()
@@ -177,7 +200,7 @@ class ExiService extends Exi_Service
      */
     public function getAgent()
     {
-        $agent = new agentType($this->agencyIdentifier);
+        $agent = new agentType($this->agencyIdentifier, $this->initiator);
         return $agent;
     }
 

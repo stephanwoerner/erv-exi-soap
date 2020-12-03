@@ -23,6 +23,7 @@
         "doctrine/doctrine-bundle": ">=1.6"
     },
     "require-dev": {
+        "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4"
     },
     "scripts": {
         "symfony-scripts": [
