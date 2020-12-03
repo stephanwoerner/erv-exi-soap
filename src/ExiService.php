@@ -83,7 +83,7 @@ class ExiService extends Exi_Service
     /**
      * @var string
      */
-    protected $initiator = 'CUSTOMER';
+    protected $initiator = 'customer';
 
     /**
      * @var string
@@ -342,7 +342,7 @@ class ExiService extends Exi_Service
      */
     public function getPayment()
     {
-        $payment = new paymentType(paymentMethodType::AI, null, null);
+        $payment = new paymentType(paymentMethodType::AI, null, null, null);
         return $payment;
     }
 

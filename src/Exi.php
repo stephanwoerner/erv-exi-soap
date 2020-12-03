@@ -63,11 +63,12 @@ class Exi
      * example: DE
      * @param $countryCode
      * example: DEU
+     * @param $initiator
+     * example: customer|broker
      * @param $isTest
      * example: true
      */
-    public function init($wsdl, $currency, $language, $countryCode, $isTest
-    ) {
+    public function init($wsdl, $currency, $language, $countryCode, $initiator, $isTest) {
         $this->exiService = new ExiService(
             $wsdl,
             $this->agencyIdentifier,
@@ -78,6 +79,7 @@ class Exi
             $this->testEmail,
             $isTest
         );
+        $this->exiService->setInitiator($initiator);
     }
 
     /**
