@@ -1,7 +1,7 @@
 # erv-exi-soap
-Soap Interface for ERV travel insurance 
+Soap Interface for ERGO travel insurance 
 
-Contact support on ERV insurance company and make a contract to get your private agengy indetifier
+Contact support on ERGO insurance company and make a contract to get your private agengy indetifier
 
 contact@reiseversicherung.de
 
