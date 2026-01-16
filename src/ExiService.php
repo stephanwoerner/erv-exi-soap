@@ -88,6 +88,11 @@ class ExiService extends Exi_Service
     /**
      * @var string
      */
+    protected $providerData = 'DAV Summit Club GmbH';
+
+    /**
+     * @var string
+     */
     protected $currency;
 
     /**
@@ -227,11 +232,21 @@ class ExiService extends Exi_Service
     }
 
     /**
+     * @param string $providerData
+     * @return ExiService
+     */
+    public function setProviderData(string $providerData): ExiService
+    {
+        $this->providerData = $providerData;
+        return $this;
+    }
+
+    /**
      * @return providerDataType
      */
     public function getProviderData()
     {
-        $providerData = new providerDataType('DAV Summit Club GmbH');
+        $providerData = new providerDataType($this->providerData);
         return $providerData;
     }
 

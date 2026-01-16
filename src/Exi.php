@@ -175,9 +175,9 @@ class Exi
         array $customerData,
         array $travelData,
         array $travellers,
-        $requestID,
-        $offerID,
-        $bookingReference
+              $requestID,
+              $offerID,
+              $bookingReference
     ) {
         $this->exiService->callRequestPreContractualInformation(
             $customerData,
@@ -235,10 +235,10 @@ class Exi
         array $customerData,
         array $travelData,
         array $travellers,
-        $requestID,
-        $offer,
-        $preContractualInformationID,
-        $bookingReference
+              $requestID,
+              $offer,
+              $preContractualInformationID,
+              $bookingReference
     ) {
         $this->exiService->callRequestBooking(
             $customerData,
