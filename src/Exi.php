@@ -240,6 +240,7 @@ class Exi
               $preContractualInformationID,
               $bookingReference
     ) {
+        $this->exiService->setProviderData($bookingReference);
         $this->exiService->callRequestBooking(
             $customerData,
             $travelData,
